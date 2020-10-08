@@ -8,6 +8,13 @@ class Movie < ApplicationRecord
   # If user is deleted, the movie should remain with user_id, but user will be blank
   # We might still want to be able to update the movie
   validates :user, presence: true, on: :create
+
+  # Instance Methods
+  def user_name
+    Rails.cache.fetch("#{user_id}_full_name", expires_in: 1.hour) do
+      user.try(:full_name)
+    end
+  end
 end
 
 # == Schema Information

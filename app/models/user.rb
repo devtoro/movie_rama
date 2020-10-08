@@ -14,10 +14,20 @@ class User < ApplicationRecord
             presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 8 }
+  validates :password, presence: true, on: :create
+  validates :password, length: { minimum: 8 }, if: proc { |user| user.password }
 
   # Callbakcs
   before_save { self.email = email.downcase }
+  # In movies, we use cached value for user full name. If user full name is changed
+  # clear cache
+  after_save :clear_movie_user_cache
+
+  private
+
+  def clear_movie_user_cache
+    Rails.cache.delete("#{id}_full_name") if full_name_changed?
+  end
 end
 
 # == Schema Information
