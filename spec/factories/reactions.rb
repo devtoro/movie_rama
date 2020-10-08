@@ -1,4 +1,14 @@
+FactoryBot.define do
+  factory :reaction do
+    trait :like do
+      name { 'like' }
+    end
 
+    trait :dislike do
+      name { 'dislike' }
+    end
+  end
+end
 
 # == Schema Information
 #

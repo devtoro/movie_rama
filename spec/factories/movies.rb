@@ -1,4 +1,9 @@
-
+FactoryBot.define do
+  factory :movie do
+    title { Faker::Movie.title }
+    description { Faker::Lorem.paragraph(sentence_count: 10) }
+  end
+end
 
 # == Schema Information
 #

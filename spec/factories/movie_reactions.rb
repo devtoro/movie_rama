@@ -1,4 +1,8 @@
+FactoryBot.define do
+  factory :movie_reaction do
 
+  end
+end
 
 # == Schema Information
 #

@@ -1,4 +1,14 @@
 
+FactoryBot.define do
+  factory :user do
+    full_name { Faker::Name.full_name }
+    email.unique { Faker::Internet.email }
+
+    after_create do |user|
+      create :movie, 5, user: user
+    end
+  end
+end
 
 # == Schema Information
 #
