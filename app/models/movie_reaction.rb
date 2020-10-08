@@ -1,4 +1,22 @@
 class MovieReaction < ApplicationRecord
+  # Relationships
+  belongs_to :movie
+  belongs_to :reaction
+  belongs_to :user
+
+  # Validations
+  validates :movie_id, uniqueness: { scope: :user_id }
+  validates :user_id, presence: true, on: :create
+  validate  :user_not_movie_owner
+
+  private
+
+  def user_not_movie_owner
+    # If movie is blank, the movie presence validation will add an error
+    return unless movie && user_id == movie.user_id
+
+    errors.add(:user_id, 'Movie owner cannot react to movie.')
+  end
 end
 
 # == Schema Information

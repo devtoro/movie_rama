@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # for bcrypt and authentication
   has_secure_password
+
   # Relationships
   has_many :movies
   has_many :movie_reactions
