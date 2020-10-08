@@ -53,6 +53,10 @@ RSpec.configure do |config|
 
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
+      # In a big project this placed here can have performance issues
+      # Ideally should be called frequently elsewhere (i.e. Semaphore CI or pipelines etc)
+      # For that purpose a rake task is created (factory_bot.rake)
+      FactoryBot.lint
       example.run
     end
   end
