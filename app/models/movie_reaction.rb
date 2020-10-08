@@ -9,6 +9,35 @@ class MovieReaction < ApplicationRecord
   validates :user_id, presence: true, on: :create
   validate  :user_not_movie_owner
 
+  # Scopes
+
+  # For each reaction we need a separated scope. Instead of passing the reaction
+  # name as an a rgument to the scope, method_missing is used in order to
+  # dynamically define a singleton_method on the MovieReaction class, based on
+  # the reaction name that we want. This way, no mater how many reactions we
+  # create, we can directly use the name of the reaction in order to fetch the
+  # movie reactions of that reaction
+  class << self
+    def method_missing(method, *args, &block)
+      r_n = method.to_s.singularize.to_sym
+      # If passed moethod not iincluded in existing reactions, return super
+      return super unless Reaction.reactions_mapping.keys.include?(r_n)
+
+      send(:define_singleton_method, method) do
+        where(reaction_id: Reaction.reactions_mapping[r_n])
+      end
+
+      where(reaction_id: Reaction.reactions_mapping[r_n])
+    end
+
+    def respond_to_missing?(method_name, include_private = false)
+      Reaction.reactions_mapping.keys.include?(method_name.to_s.singularize.to_sym) || super
+    end
+  end
+
+  # Callbacks
+  after_commit :clear_movie_reaction_counts
+
   private
 
   def user_not_movie_owner
@@ -16,6 +45,13 @@ class MovieReaction < ApplicationRecord
     return unless movie && user_id == movie.user_id
 
     errors.add(:user_id, 'Movie owner cannot react to movie.')
+  end
+
+  # We cache movie reactions in order to avoid n+1 queries. For that reason
+  # every time a new movie_reaction is created or updated or deleted, we need
+  # to clear the respective cache key
+  def clear_movie_reaction_counts
+    Rails.cache.delete("#{movie_id}_reaction_counts")
   end
 end
 
