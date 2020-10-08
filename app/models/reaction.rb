@@ -4,6 +4,18 @@ class Reaction < ApplicationRecord
 
   # Validations
   validates :name, presence: true
+
+  # Class methods
+  class << self
+    def reactions_mapping
+      Rails.cache.fetch('reactions_mapping') do
+        mapping = {}
+        all.each { |r| mapping[r.name.to_sym] = r.id }
+
+        mapping
+      end
+    end
+  end
 end
 
 # == Schema Information
