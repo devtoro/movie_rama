@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :reaction do
-    name { '' }
+    name { 'reaction' }
 
     trait :like do
       name { 'like' }

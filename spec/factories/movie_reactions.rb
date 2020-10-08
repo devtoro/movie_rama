@@ -1,6 +1,8 @@
 # FactoryBot.define do
 #   factory :movie_reaction do
-
+#     association :user, factory: :user
+#     association :movie, factory: :movie
+#     association :reaction, factory: :reaction
 #   end
 # end
 
