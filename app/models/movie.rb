@@ -9,6 +9,20 @@ class Movie < ApplicationRecord
   # We might still want to be able to update the movie
   validates :user, presence: true, on: :create
 
+  # Scopes
+  scope :ordered, ->(order = 'publication', direction = 'desc') do
+    case order
+    when 'publication'
+      order(created_at: direction)
+    else
+      r_id = Reaction.reactions_mapping[order.to_s.singularize.to_sym]
+      joins(:movie_reactions)
+        .group('movies.id')
+        .order("COUNT(movie_reactions.reaction_id) #{direction.to_s.upcase}")
+        .where('movie_reactions.reaction_id = ?', r_id)
+    end
+  end
+
   # Instance Methods
   def user_name
     Rails.cache.fetch("#{user_id}_full_name", expires_in: 1.hour) do
