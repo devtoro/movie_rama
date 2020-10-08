@@ -1,4 +1,5 @@
-
+class User < ApplicationRecord
+end
 
 # == Schema Information
 #

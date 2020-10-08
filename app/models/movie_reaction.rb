@@ -1,4 +1,5 @@
-
+class MovieReaction < ApplicationRecord
+end
 
 # == Schema Information
 #
