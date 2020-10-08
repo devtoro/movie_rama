@@ -15,6 +15,17 @@ class Movie < ApplicationRecord
       user.try(:full_name)
     end
   end
+
+  def movie_reactions_count
+    Rails.cache.fetch("#{id}_reaction_counts") do
+      m_r_counts = {}
+      Reaction.reactions_mapping.each do |k, v|
+        m_r_counts[k] = movie_reactions.send(k).count
+      end
+
+      m_r_counts
+    end
+  end
 end
 
 # == Schema Information
