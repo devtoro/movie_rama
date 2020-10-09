@@ -1,2 +1,2 @@
-class MovieReactionsController < ApplicationController
+class MovieReactionsController < SecureController
 end
