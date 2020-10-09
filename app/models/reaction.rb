@@ -1,3 +1,4 @@
+# This is a bit overengineered, but it's done on purpose for the sake of it
 class Reaction < ApplicationRecord
   # Relationships
   has_many :movie_reactions, dependent: :restrict_with_error

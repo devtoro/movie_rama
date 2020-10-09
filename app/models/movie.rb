@@ -30,6 +30,14 @@ class Movie < ApplicationRecord
     end
   end
 
+
+  # I have not used counter_cache (built in in rails or gem like counter_culture)
+  # In case a movie is super popular an a huge number of reactions is created
+  # simultaneously, it could lock the database. + It's still is a N+1 query so
+  # even in real life, I am not a big fun.
+  #
+  # With the following method, I keep the reaactions counts cached in a ruby Hash
+  # object.
   def movie_reactions_count
     Rails.cache.fetch("#{id}_reaction_counts") do
       m_r_counts = {}
