@@ -1,0 +1,2 @@
+class MovieReactionsController < ApplicationController
+end
