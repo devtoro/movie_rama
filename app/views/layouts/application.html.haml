@@ -2,10 +2,16 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %link{:href => "https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap", :rel => "stylesheet"}/
     %title MovieRama
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag params[:controller], media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    = render 'layouts/header', locals: { current_user: current_user }
+    - flash.each do |type, msg|
+      %div{ class: "notification #{type}" }= msg
+    %div.main
+      = yield
