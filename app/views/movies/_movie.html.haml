@@ -1,0 +1,16 @@
+.movie
+  .title= movie.title
+  .info
+    %span.creator
+      = "Shared by: #{movie.user.full_name}"
+      = " #{movie.created_since}"
+  .description= movie.description
+  .reactions
+    - reactions.each do |reaction|
+      %span{ class: reaction.name }
+        - if current_user && current_user.id != movie.user_id
+          = link_to "#{reaction.name.pluralize.capitalize}: ", movie_reactions_path
+          %i= movie.reactions_count[reaction.name.to_sym]
+        - else
+          = "#{reaction.name.pluralize.capitalize}: "
+          %i= movie.reactions_count[reaction.name.to_sym]
