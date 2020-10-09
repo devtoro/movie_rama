@@ -15,7 +15,16 @@ class Movie < ApplicationRecord
     when 'date', 'publication'
       order(created_at: direction)
     else
-      left_outer_joins(:movie_reactions)
+      join_statement = 'LEFT OUTER JOIN movie_reactions ON movie_reactions.movie_id = movies.id AND movie_reactions.reaction_id = ?'
+      reaction_id = Reaction.reactions_mapping[order.to_sym]
+      joins(
+        sanitize_sql_array(
+          [
+            join_statement,
+            reaction_id
+          ]
+        )
+      )
         .group('movies.id')
         .order("COUNT(movie_reactions.reaction_id) #{direction.to_s.upcase}")
     end
