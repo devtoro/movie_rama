@@ -7,7 +7,18 @@
   padding: .5rem;
   margin: .5rem 0;
 
-  span { margin: 0 .25rem; }
+  span {
+    margin: 0 .25rem;
+    display: flex;
+    align-items: center;
+
+    a {
+      color: #5cad5c;
+      &.margined { margin-right: 1.12rem; text-decoration: none; }
+    }
+
+    i { color: #5cad5c }
+  }
 }
 
 .movie {

@@ -5,6 +5,8 @@ class MoviesController < SecureController
     i_params = index_params
     order = i_params[:order] || 'date'
     dir   = i_params[:dir] || 'desc'
+
+    @dir  = dir == 'desc' ? 'asc' : 'desc'
     @movies = Movie
               .includes(:user)
               .ordered(order, dir)

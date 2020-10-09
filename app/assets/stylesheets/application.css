@@ -12,6 +12,7 @@
  *
  *= require header
  *= require main
+ *= require material_icons
  *= require_self
  */
  body { font-family: 'Nunito', sans-serif; }
