@@ -20,4 +20,8 @@ RSpec.describe User, type: :model do
       expect(valid_user.errors.messages.blank?).to eq(true)
     end
   end
+
+  context 'Callbacks' do
+    it 'Delivers an email once user is created'
+  end
 end
