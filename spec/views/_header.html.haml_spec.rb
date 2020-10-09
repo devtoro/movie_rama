@@ -17,7 +17,8 @@ RSpec.describe 'layouts/_header.html.haml' do
     end
 
     it 'Shows new movie button if user is authenticated' do
-      current_user = FactoryBot.build(:user)
+      current_user = FactoryBot.create(:user)
+
       view.stub(:current_user) { current_user }
 
       render
@@ -26,12 +27,12 @@ RSpec.describe 'layouts/_header.html.haml' do
     end
 
     it 'Shows new welcome message if user is authenticated' do
-      current_user = FactoryBot.build(:user)
+      current_user = FactoryBot.create(:user)
       view.stub(:current_user) { current_user }
 
       render
 
-      rendered.should contain "Welcome #{current_user.full_name}"
+      expect(rendered).to have_text("Welcome #{current_user.full_name}")
     end
   end
 end
