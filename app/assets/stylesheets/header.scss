@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  height: 3.5rem;
+  padding: .5rem 1.5rem;
+}
+
+header .title { flex-grow: 11; }
+header .title h1 { margin: 0;  }
+header .profile { flex-grow: 1; }
+
+.profile {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: .5rem;
+  width: 4rem;
+  height: 1.5rem;
+  border-radius: 1.5rem;
+  text-align: center;
+}
+
+.btn.btn-signup { color: #fff; background-color: #5cad5c; }
+.btn.btn-login { color: #5cad5c; border: 1px solid #5cad5c }

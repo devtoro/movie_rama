@@ -1,3 +1,40 @@
 // Place all the styles related to the movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.top-filters {
+  display: flex;
+  border: 1px solid rgb(199, 199, 199);
+  padding: .5rem;
+  margin: .5rem 0;
+
+  span { margin: 0 .25rem; }
+}
+
+.movie {
+  border: 1px solid rgb(218, 216, 216);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .2rem;
+  padding: .3rem .6rem;
+
+  .title { font-weight: bold; font-size: 1.2rem; }
+  .info {
+    font-style: italic;
+    font-size: .7rem;
+  }
+
+  .reactions {
+    display: flex;
+
+    span {
+      padding: 0 .1rem;
+      margin-right: .2rem;
+      font-size: .8rem;
+
+      &.like { color: rgb(94, 94, 252) }
+      &.hate { color: rgb(247, 64, 64); }
+
+      i { font-size: .9rem; font-weight: bold; }
+    }
+  }
+}
