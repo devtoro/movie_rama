@@ -1,0 +1,8 @@
+.top-filters
+  %span Sort By:
+  %span Date
+  - @reactions.each do |reaction|
+    %span= "#{reaction.name.pluralize}"
+
+- @movies.each do |movie|
+  = render partial: movie, locals: { current_user: current_user, reactions: @reactions }
