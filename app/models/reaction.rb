@@ -6,6 +6,9 @@ class Reaction < ApplicationRecord
   # Validations
   validates :name, presence: true
 
+  # Callbacks
+  after_commit :clear_cache_movies_counts
+
   # Class methods
   class << self
     def reactions_mapping
@@ -16,6 +19,16 @@ class Reaction < ApplicationRecord
         mapping
       end
     end
+  end
+
+  private
+
+  # The Association between reactions and movies is overengineered. In a real
+  # productiont application it would not need that. Nevertheless, if we
+  # would end up with a similar setup, this callback should execute and
+  # asynchronous job that would clear the required cache keys.
+  def clear_cache_movies_counts
+    Rails.cache.delete_matched(/_reaction_counts/)
   end
 end
 
