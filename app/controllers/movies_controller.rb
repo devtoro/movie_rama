@@ -1,6 +1,16 @@
 class MoviesController < SecureController
   def index
     @reactions = Reaction.all
-    @movies = Movie.includes(:user).all
+
+    i_params = index_params
+    order = i_params[:order] || 'date'
+    dir   = i_params[:dir] || 'desc'
+    @movies = Movie
+              .includes(:user)
+              .ordered(order, dir)
+  end
+
+  def index_params
+    params.permit(:order, :dir)
   end
 end

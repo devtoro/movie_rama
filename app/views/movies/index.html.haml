@@ -1,8 +1,10 @@
 .top-filters
   %span Sort By:
-  %span Date
+  %span
+    = link_to 'Date', movies_path(order: 'date', dir: 'desc')
   - @reactions.each do |reaction|
-    %span= "#{reaction.name.pluralize}"
+    %span
+      = link_to "#{reaction.name.pluralize.capitalize}", movies_path(order: reaction.name, dir: 'desc')
 
 - @movies.each do |movie|
   = render partial: movie, locals: { current_user: current_user, reactions: @reactions }

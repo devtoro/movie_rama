@@ -10,16 +10,14 @@ class Movie < ApplicationRecord
   validates :user, presence: true, on: :create
 
   # Scopes
-  scope :ordered, ->(order = 'publication', direction = 'desc') do
+  scope :ordered, ->(order = 'date', direction = 'desc') do
     case order
-    when 'publication'
+    when 'date', 'publication'
       order(created_at: direction)
     else
-      r_id = Reaction.reactions_mapping[order.to_s.singularize.to_sym]
-      joins(:movie_reactions)
+      left_outer_joins(:movie_reactions)
         .group('movies.id')
         .order("COUNT(movie_reactions.reaction_id) #{direction.to_s.upcase}")
-        .where('movie_reactions.reaction_id = ?', r_id)
     end
   end
 
