@@ -27,7 +27,7 @@ FactoryBot.define do
 
     trait :with_movies do
       after_create do |user|
-        create :movie, 5, user: user
+        5.times { |i| create :movie, user: user }
       end
     end
   end
