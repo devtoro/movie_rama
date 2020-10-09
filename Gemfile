@@ -5,15 +5,15 @@ ruby '2.6.3'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'haml-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.7'
+gem 'material_icons'
 gem 'pg'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
-gem "haml-rails", "~> 2.0"
-gem 'material_icons'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
