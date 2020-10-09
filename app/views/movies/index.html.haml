@@ -1,10 +1,22 @@
 .top-filters
   %span Sort By:
   %span
-    = link_to 'Date', movies_path(order: 'date', dir: 'desc')
+    - for_date = params[:order] == 'date'
+    - dir = for_date ? @dir : 'desc'
+    = link_to 'Date ', movies_path(order: 'date', dir: dir), class: for_date ? '' : 'margined'
+    - if for_date
+      = @dir == 'desc' ? material_icon.keyboard_arrow_up.md_18 : material_icon.keyboard_arrow_down.md_18
   - @reactions.each do |reaction|
+    :ruby
+      for_this_r = params[:order] == reaction.name
+      dir = for_this_r ? @dir : 'desc'
+      ordering_params = {
+        order: reaction.name,
+        dir: dir
+      }
     %span
-      = link_to "#{reaction.name.pluralize.capitalize}", movies_path(order: reaction.name, dir: 'desc')
-
+      = link_to "#{reaction.name.pluralize.capitalize}", ordering_params, class: for_this_r ? '' : 'margined'
+      - if for_this_r
+        = @dir == 'desc' ? material_icon.keyboard_arrow_up.md_18 : material_icon.keyboard_arrow_down.md_18
 - @movies.each do |movie|
   = render partial: movie, locals: { current_user: current_user, reactions: @reactions }
