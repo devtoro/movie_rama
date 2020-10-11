@@ -10,6 +10,7 @@ RSpec.describe 'movies/index.html.haml' do
 
       expect(rendered).to have_link 'Date', href: '/movies?dir=desc&order=date'
     end
+
     it 'Has sorting options for all reactions that exist in the database' do
       render
 
