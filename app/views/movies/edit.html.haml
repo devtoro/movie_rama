@@ -1,0 +1,6 @@
+.form-title
+  %h2
+    Update Movie
+    =" #{@movie.title}"
+.form
+  =render partial: 'movie_form', locals: { movie: @movie }
