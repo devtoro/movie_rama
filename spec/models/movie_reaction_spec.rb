@@ -24,7 +24,7 @@ RSpec.describe MovieReaction, type: :model do
 
   context 'Reactions count singleton method' do
     before do
-      %w[like hate].each { |r| Reaction.create(name: r) }
+      %w[like hate].each { |r| FactoryBot.create(:reaction, r) }
     end
 
     it 'Responds to random ame, same as an existing reaction' do

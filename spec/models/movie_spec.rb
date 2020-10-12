@@ -12,9 +12,8 @@ RSpec.describe Movie, type: :model do
   context 'Scopes' do
     before do
       FactoryBot.create(:user)
-      %w[like hate].each { |r| Reaction.create(name: r) }
-      like = Reaction.first
-      hate = Reaction.last
+      like = FactoryBot.create(:reaction, :like)
+      hate = FactoryBot.create(:reaction, :hate)
       reaction = like
       4.times { |i| FactoryBot.create(:movie) }
       Movie.all.each_with_index do |movie, index|
@@ -42,7 +41,7 @@ RSpec.describe Movie, type: :model do
         next if index == (movies.length - 1)
 
         movie_likes       = movie.reactions_count[:like]
-        next_movie_likes  = movies[index+1].reactions_count[:like]
+        next_movie_likes  = movies[index + 1].reactions_count[:like]
 
         results = movie_likes >= next_movie_likes
       end
@@ -56,7 +55,7 @@ RSpec.describe Movie, type: :model do
         next if index == (movies.length - 1)
 
         movie_likes       = movie.reactions_count[:like]
-        next_movie_likes  = movies[index+1].reactions_count[:like]
+        next_movie_likes  = movies[index + 1].reactions_count[:like]
 
         results = movie_likes <= next_movie_likes
       end
@@ -70,7 +69,7 @@ RSpec.describe Movie, type: :model do
         next if index == (movies.length - 1)
 
         movie_hates       = movie.reactions_count[:hate]
-        next_movie_hates  = movies[index+1].reactions_count[:hate]
+        next_movie_hates  = movies[index + 1].reactions_count[:hate]
 
         results = movie_hates >= next_movie_hates
       end
@@ -84,7 +83,7 @@ RSpec.describe Movie, type: :model do
         next if index == (movies.length - 1)
 
         movie_hates       = movie.reactions_count[:hate]
-        next_movie_hates  = movies[index+1].reactions_count[:hate]
+        next_movie_hates  = movies[index + 1].reactions_count[:hate]
 
         results = movie_hates <= next_movie_hates
       end

@@ -1,13 +1,16 @@
 FactoryBot.define do
   factory :reaction do
     name { 'reaction' }
+    color { '#5e5efc' }
 
     trait :like do
       name { 'like' }
+      color { '#5e5efc' }
     end
 
-    trait :dislike do
-      name { 'dislike' }
+    trait :hate do
+      name { 'hate' }
+      color { '#f74040' }
     end
   end
 end
