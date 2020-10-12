@@ -15,3 +15,8 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+// Hide flash messages after 3500ms
+$(document).on('turbolinks:load', function(){
+  $(".notification").delay(3500).slideUp(500);
+  });
