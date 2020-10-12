@@ -47,15 +47,22 @@
   .reactions {
     display: flex;
     background-color: #f2fbf2;
+    padding: .2rem 0;
     a { text-decoration: none; color: inherit; }
 
     span {
       padding: 0 .1rem;
       margin-right: .2rem;
       font-size: .8rem;
+      border-radius: 2px;
 
-      &.like { color: rgb(94, 94, 252) }
-      &.hate { color: rgb(247, 64, 64); }
+      &.like { color: rgb(94, 94, 252); border: 1px solid rgb(94, 94, 252); }
+      &.hate { color: rgb(247, 64, 64); border: 1px solid rgb(247, 64, 64); }
+      &.reacted {
+        color: #fff;
+        &.like { background-color: rgb(94, 94, 252) }
+        &.hate { background-color: rgb(247, 64, 64); }
+      }
 
       i { font-size: .9rem; font-weight: bold; }
       a { text-decoration: none; }
