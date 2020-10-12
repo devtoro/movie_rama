@@ -25,9 +25,7 @@ class User < ApplicationRecord
 
   # Instance methods
   def check_reaction(movie_id:)
-    mr = MovieReaction.where(movie_id: movie_id, user_id: id)
-
-    mr.present? && mr.first.reaction_name
+    MovieReaction.find_by(movie_id: movie_id, user_id: id)
   end
 
   private
