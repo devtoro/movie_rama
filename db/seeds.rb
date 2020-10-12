@@ -49,6 +49,6 @@
 # Create reactions
 #
 [
-  { name: 'like' },
-  { name: 'hate' }
+  { name: 'like', color: '#5e5efc' },
+  { name: 'hate', color: '#f74040' }
 ].each { |reaction_attrs| Reaction.create reaction_attrs }
