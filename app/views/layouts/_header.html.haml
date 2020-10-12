@@ -2,10 +2,10 @@
   .title
     %h1 MovieRama
   .profile
-    -# - byebug
     - if current_user
-      = "Welcome #{ current_user.full_name }"
-      =link_to "New Moview", new_movie_path, class: 'btn btn-new'
+      %span{class: 'btn'}="Welcome #{ current_user.full_name.split(' ').first }"
+      =link_to "Log out", '/logout', class: 'btn btn-logout', method: :delete
+      =link_to "+ Movie", new_movie_path, class: 'btn btn-new'
     - else
       =link_to 'Sign Up', signup_path, class: 'btn btn-signup'
-      =link_to 'Login', new_session_path, class: 'btn btn-login'
+      =link_to 'Login', login_path, class: 'btn btn-login'
