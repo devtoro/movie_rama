@@ -28,7 +28,8 @@ class Reaction < ApplicationRecord
   # would end up with a similar setup, this callback should execute and
   # asynchronous job that would clear the required cache keys.
   def clear_cache_movies_counts
-    Rails.cache.delete_matched(/_reaction_counts/)
+    Rails.cache.delete_matched(/\d+_reaction_counts/)
+    Rails.cache.delete('all_reactions')
   end
 end
 
