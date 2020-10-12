@@ -1,0 +1,18 @@
+- method = user.id ? :put : :post
+=form_with model: user, remote: true, method: method, html: { id: 'user-form' } do |f|
+  %section
+    =f.label :full_name, 'Full Name: '
+    =f.text_field :full_name
+    - if user.errors[:full_name].any?
+      %span.error=user.errors[:full_name].join(', ')
+  %section
+    =f.label :email, 'Email: '
+    =f.text_field :email
+    - if user.errors[:email].any?
+      %span.error= user.errors[:email].join(', ')
+    %section
+      =f.label :password, 'Password: '
+      =f.text_field :password
+      - if user.errors[:password].any?
+        %span.error= user.errors[:password].join(', ')
+  =f.button('Save', type: 'submit')
