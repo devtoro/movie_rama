@@ -22,6 +22,8 @@ module SessionsHelper
     user == current_user
   end
 
+  # If tries to visit a URL that is restricted for authenticated users
+  # after successfull login he will be redirected to that
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)

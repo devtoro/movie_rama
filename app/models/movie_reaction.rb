@@ -12,11 +12,13 @@ class MovieReaction < ApplicationRecord
   # Scopes
 
   # For each reaction we need a separated scope. Instead of passing the reaction
-  # name as an a rgument to the scope, method_missing is used in order to
+  # name/id as an a rgument to the scope, method_missing is used in order to
   # dynamically define a singleton_method on the MovieReaction class, based on
   # the reaction name that we want. This way, no mater how many reactions we
   # create, we can directly use the name of the reaction in order to fetch the
   # movie reactions of that reaction
+  #
+  # Used in Movie#reactions_count method
   class << self
     def method_missing(method, *args, &block)
       r_n = method.to_s.singularize.to_sym
