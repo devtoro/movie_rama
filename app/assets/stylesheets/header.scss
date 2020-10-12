@@ -4,7 +4,11 @@ header {
   padding: .5rem 1.5rem;
 }
 
-header .title { flex-grow: 11; }
+header .title {
+  flex-grow: 11;
+
+  a { text-decoration: none; color: #5cad5c; }
+}
 header .title h1 { margin: 0;  }
 header .profile { flex-grow: 1; }
 

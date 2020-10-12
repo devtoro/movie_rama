@@ -1,6 +1,7 @@
 %header
   .title
-    %h1 MovieRama
+    %h1
+      =link_to 'MovieRama', root_path
   .profile
     - if current_user
       %span{class: 'btn'}="Welcome #{ current_user.full_name.split(' ').first }"
