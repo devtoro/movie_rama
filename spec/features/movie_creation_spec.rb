@@ -39,4 +39,29 @@ RSpec.describe 'Movie creation procedure', type: :feature do
     # New movie title should be present inside the list of the movies
     expect(page).to have_content 'some title'
   end
+
+  it 'Shows validation error', js: true do
+    user = FactoryBot.create(:user)
+    # First we have to login
+    visit '/login'
+    within('#login-form') do
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: 'movierama'
+    end
+
+    click_button 'Login'
+
+    # Then click on the new movie button
+    click_on('+ Movie')
+
+    # Fill in the form to create the movie and click save
+    within('#movie-form') do
+      fill_in 'Description', with: 'some description'
+    end
+
+    click_button 'Save'
+
+    # New movie title should be present inside the list of the movies
+    expect(page).to have_content 'can\'t be blank'
+  end
 end
