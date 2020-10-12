@@ -1,0 +1,13 @@
+- method = movie.id ? :put : :post
+=form_with model: movie, remote: true, method: method, html: { class: 'movie-form' } do |f|
+  %section
+    =f.label :title, 'Title: '
+    =f.text_field :title
+    - if movie.errors[:title].any?
+      %span.error=movie.errors[:title].join(', ')
+  %section
+    =f.label :description, 'Description: '
+    =f.text_area :description, rows: 5
+    - if movie.errors[:description].any?
+      %span.error= movie.errors[:description].join(', ')
+  =submit_tag('Save')
