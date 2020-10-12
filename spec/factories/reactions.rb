@@ -17,7 +17,7 @@ end
 # Table name: reactions
 #
 #  id         :bigint           not null, primary key
-#  icon       :string
+#  color      :string
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

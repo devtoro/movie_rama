@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_082800) do
 
   create_table "reactions", force: :cascade do |t|
     t.string "name", null: false
-    t.string "icon"
+    t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

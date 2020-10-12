@@ -5,6 +5,7 @@ class Reaction < ApplicationRecord
 
   # Validations
   validates :name, presence: true
+  validates :color, presence: true
 
   # Callbacks
   after_commit :clear_cache_movies_counts
@@ -38,7 +39,7 @@ end
 # Table name: reactions
 #
 #  id         :bigint           not null, primary key
-#  icon       :string
+#  color      :string
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
