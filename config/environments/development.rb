@@ -14,6 +14,8 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
+  config.action_controller.perform_caching = true
+  config.cache_classes = true
   config.cache_store = :memory_store
   config.public_file_server.headers = {
     'Cache-Control' => "public, max-age=#{1.hour.to_i}"
