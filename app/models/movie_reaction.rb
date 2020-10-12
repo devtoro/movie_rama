@@ -40,6 +40,13 @@ class MovieReaction < ApplicationRecord
   # Callbacks
   after_commit :clear_movie_reaction_counts
 
+  # Instance methods
+  def reaction_name
+    Rails.cache.fetch("#{id}_mr_name") do
+      reaction.name
+    end
+  end
+
   private
 
   def user_not_movie_owner
@@ -54,6 +61,7 @@ class MovieReaction < ApplicationRecord
   # to clear the respective cache key
   def clear_movie_reaction_counts
     Rails.cache.delete("#{movie_id}_reaction_counts")
+    Rails.cache.delete("#{id}_mr_name")
   end
 end
 

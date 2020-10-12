@@ -23,6 +23,13 @@ class User < ApplicationRecord
   # clear cache
   after_save :clear_movie_user_cache
 
+  # Instance methods
+  def check_reaction(movie_id:)
+    mr = MovieReaction.where(movie_id: movie_id, user_id: id)
+
+    mr.present? && mr.first.reaction_name
+  end
+
   private
 
   def clear_movie_user_cache
