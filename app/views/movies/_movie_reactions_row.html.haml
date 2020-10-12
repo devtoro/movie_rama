@@ -7,6 +7,6 @@
       = reaction_link_to(reaction: reaction, user: current_user, movie: movie, umr: user_movie_reaction)
       %i= movie.reactions_count[reaction.name.to_sym] || 0
     - else
-      %b{ title: "You cannot #{reaction.name} a movie you shared" }
+      %b{ title: current_user.present? ? "You cannot #{reaction.name} a movie you shared" : "Log in to #{reaction.name}"}
         ="#{reaction.name.pluralize.capitalize}: "
       %i= movie.reactions_count[reaction.name.to_sym] || 0
