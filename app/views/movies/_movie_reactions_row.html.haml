@@ -1,11 +1,12 @@
 :ruby
   user_movie_reaction = current_user.present? && current_user.check_reaction(movie_id: movie.id)
 - reactions.each do |reaction|
-  - reaction_class = user_movie_reaction == reaction.name ? 'reacted' : ''
-  %span{ class: "#{reaction.name} #{reaction_class}" }
+  - style = reaction_span_style(user_movie_reaction, reaction)
+  %span{ style: style }
     - if current_user && current_user.id != movie.user_id
-      = link_to "#{reaction.name.pluralize.capitalize}: ", movie_reactions_path
+      = reaction_link_to(reaction: reaction, user: current_user, movie: movie, umr: user_movie_reaction)
       %i= movie.reactions_count[reaction.name.to_sym] || 0
     - else
-      = "#{reaction.name.pluralize.capitalize}: "
+      %b{ title: "You cannot #{reaction.name} a movie you shared" }
+        ="#{reaction.name.pluralize.capitalize}: "
       %i= movie.reactions_count[reaction.name.to_sym] || 0

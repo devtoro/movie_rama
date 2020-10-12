@@ -7,5 +7,5 @@
       = link_to movie.user_name, movies_path(params.permit(:order, :dir).merge(user_id: movie.user_id))
       = ", #{movie.created_since}"
   .description= movie.description
-  .reactions
+  .reactions{ id: movie.id }
     =render partial: 'movie_reactions_row', locals: { current_user: current_user, movie: movie, reactions: reactions }
