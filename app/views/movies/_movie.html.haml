@@ -1,9 +1,11 @@
 .movie
-  .title= movie.title
+  .title
+    = link_to movie.title, edit_movie_path(movie)
   .info
     %span.creator
-      = "Shared by: #{movie.user.full_name}"
-      = " #{movie.created_since}"
+      Shared by:&nbsp;
+      = link_to movie.user_name, movies_path(params.permit(:order, :dir).merge(user_id: movie.user_id))
+      = ", #{movie.created_since}"
   .description= movie.description
   .reactions
     - reactions.each do |reaction|
