@@ -27,7 +27,7 @@ class MoviesController < SecureController
       redirect_to movies_path
     else
       respond_to do |format|
-        format.js { render @movie.errors.as_json, status: 422 }
+        format.js {}
       end
     end
   end
@@ -35,18 +35,18 @@ class MoviesController < SecureController
   def edit; end
 
   def update
-    if @movie.update(movie_params)
+    if authorize_movie && @movie.update(movie_params)
       flash[:success] = "Movie #{@movie.title} created successfully"
       redirect_to movies_path
     else
       respond_to do |format|
-        format.js { render @movie.errors.as_json, status: 422 }
+        format.js {}
       end
     end
   end
 
   def destroy
-    if @movie.destroy
+    if authorize_movie && @movie.destroy
       flash[:success] = "Movie #{@movie.title} deleted successfully"
       redirect_to movies_path
     else
@@ -73,5 +73,11 @@ class MoviesController < SecureController
 
   def set_movie
     @movie = Movie.find(params[:id])
+  end
+
+  def authorize_movie
+    return true if @movie.user_id == current_user.try(:id)
+
+    raise UnauthorizedException
   end
 end
