@@ -8,6 +8,6 @@ class SecureController < ApplicationController
 
     store_location
     flash[:error] = 'Please log in first'
-    redirect_to new_session_path
+    redirect_to login_path
   end
 end
