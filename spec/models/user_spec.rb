@@ -21,7 +21,29 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'Callbacks' do
-    it 'Delivers an email once user is created'
+  context 'Instance methods' do
+    before do
+      user1     = FactoryBot.create :user
+      user2     = FactoryBot.create :user
+      movie1    = FactoryBot.create :movie, user: user2
+      FactoryBot.create :movie, user: user2
+      reaction  = FactoryBot.create :reaction, :like
+      MovieReaction.create(movie: movie1, reaction: reaction, user: user1)
+    end
+
+    it 'Should show like for example user and movie1' do
+      mr = MovieReaction.first
+      movie = mr.movie
+      user = mr.user
+      r = user.check_reaction(movie_id: movie.id)
+
+      expect(r).to eq('like')
+    end
+
+    it 'Should show false for example user and movie2' do
+      r = User.first.check_reaction(movie_id: User.last.movies.last.id)
+
+      expect(r).to eq(false)
+    end
   end
 end
