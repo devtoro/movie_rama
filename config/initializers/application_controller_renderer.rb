@@ -6,3 +6,4 @@
 #     https: false
 #   )
 # end
+require "#{Rails.root}/lib/unauthorized_exception.rb"
