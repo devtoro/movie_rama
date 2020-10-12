@@ -3,17 +3,17 @@
   %span
     - for_date = params[:order] == 'date'
     - dir = for_date ? @dir : 'desc'
-    = link_to 'Date ', movies_path(order: 'date', dir: dir), class: for_date ? '' : 'margined'
+    = link_to 'Date ', movies_path(params.permit(:user_id).merge(order: 'date', dir: dir)), class: for_date ? '' : 'margined'
     - if for_date
       = @dir == 'desc' ? material_icon.keyboard_arrow_up.md_18 : material_icon.keyboard_arrow_down.md_18
   - @reactions.each do |reaction|
     :ruby
       for_this_r = params[:order] == reaction.name
       dir = for_this_r ? @dir : 'desc'
-      ordering_params = {
+      ordering_params = params.permit(:user_id).merge(
         order: reaction.name,
         dir: dir
-      }
+      )
     %span
       = link_to "#{reaction.name.pluralize.capitalize}", ordering_params, class: for_this_r ? '' : 'margined'
       - if for_this_r
