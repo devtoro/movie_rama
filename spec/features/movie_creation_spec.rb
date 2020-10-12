@@ -14,7 +14,7 @@ RSpec.describe 'Movie creation procedure', type: :feature do
     expect(page).to have_content 'Please log in first'
   end
 
-  it 'Successfully creates movie when logged in' do
+  it 'Successfully creates movie when logged in', js: true do
     user = FactoryBot.create(:user)
     # First we have to login
     visit '/login'
