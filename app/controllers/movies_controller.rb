@@ -1,6 +1,5 @@
 class MoviesController < SecureController
   before_action :set_reactions, except: :destroy
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
     i_params  = index_params
@@ -69,10 +68,6 @@ class MoviesController < SecureController
 
   def set_reactions
     @reactions = Reaction.all
-  end
-
-  def set_movie
-    @movie = Movie.find(params[:id])
   end
 
   def authorize_movie
