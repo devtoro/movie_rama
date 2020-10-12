@@ -37,13 +37,13 @@ RSpec.describe User, type: :model do
       user = mr.user
       r = user.check_reaction(movie_id: movie.id)
 
-      expect(r).to eq('like')
+      expect(r.id).to eq(mr.id)
     end
 
     it 'Should show false for example user and movie2' do
       r = User.first.check_reaction(movie_id: User.last.movies.last.id)
 
-      expect(r).to eq(false)
+      expect(r).to eq(nil)
     end
   end
 end
