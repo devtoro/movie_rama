@@ -67,7 +67,7 @@ class MoviesController < SecureController
   end
 
   def set_reactions
-    @reactions = Reaction.all
+    @reactions = Rails.cache.fetch('all_reactions') { Reaction.all }
   end
 
   def authorize_movie
