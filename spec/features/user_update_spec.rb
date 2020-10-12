@@ -16,6 +16,6 @@ RSpec.describe 'Acceptance test for user update', type: :feature do
     visit "/users/#{User.last.id}/edit"
     click_button 'Save'
 
-    expect(page).to have_content 'Cannot edit another user data'
+    expect(page).to have_content 'You are not authorized to perform this action'
   end
 end
