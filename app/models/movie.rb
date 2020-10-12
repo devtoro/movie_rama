@@ -10,6 +10,7 @@ class Movie < ApplicationRecord
   validates :user, presence: true, on: :create
 
   # Scopes
+  scope :user, ->(user_id = nil) { user_id ? where(user_id: user_id) : self }
   scope :ordered, ->(order = 'date', direction = 'desc') do
     case order
     when 'date', 'publication'
@@ -17,14 +18,8 @@ class Movie < ApplicationRecord
     else
       join_statement = 'LEFT OUTER JOIN movie_reactions ON movie_reactions.movie_id = movies.id AND movie_reactions.reaction_id = ?'
       reaction_id = Reaction.reactions_mapping[order.to_sym]
-      joins(
-        sanitize_sql_array(
-          [
-            join_statement,
-            reaction_id
-          ]
-        )
-      )
+
+      joins(sanitize_sql_array([join_statement,reaction_id]))
         .group('movies.id')
         .order("COUNT(movie_reactions.reaction_id) #{direction.to_s.upcase}")
     end
@@ -53,8 +48,12 @@ class Movie < ApplicationRecord
   # simultaneously, it could lock the database. + It's still is a N+1 query so
   # even in real life, I am not a big fun.
   #
-  # With the following method, I keep the reaactions counts cached in a ruby Hash
+  # With the following method, I keep the reactions counts cached in a ruby Hash
   # object.
+  #
+  # method sent (reaction name i.e. like) is dynamically defined as scope
+  # (specifically a singleton method is defined for each reaction) inside
+  # MovieReaction model
   def reactions_count
     Rails.cache.fetch("#{id}_reaction_counts") do
       m_r_counts = {}
