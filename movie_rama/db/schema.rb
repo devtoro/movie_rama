@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_082800) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_movies_on_title"
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 

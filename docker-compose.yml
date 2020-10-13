@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  database:
+    # Use the postgres 11.5 base image for this container.
+    image: postgres:11.5
+
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  web:
+    build: .
+    volumes:
+      - ./movie_rama:/home/movierama/application:cached
+
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -e development -p 3000 -b '0.0.0.0'"
+
+    # Expose port 3000.
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - database
+
+    environment:
+      RAILS_ENV: development
+      DATABASE_NAME: movierama_dev
+      DATABASE_USER: movierama
+      DATABASE_PASSWORD: 
+      DATABASE_HOST: database
+
+# Declare the volumes that our application uses.
+volumes:
+  db_data:

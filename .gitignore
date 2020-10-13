@@ -5,28 +5,28 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+/movie_rama/.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+/movie_rama/log/*
+/movie_rama/tmp/*
+!/movie_rama/log/.keep
+!/movie_rama/tmp/.keep
 
 # Ignore uploaded files in development.
-/storage/*
-!/storage/.keep
+/movie_rama/storage/*
+!/movie_rama/storage/.keep
 
-/public/assets
-.byebug_history
+/movie_rama/public/assets
+/movie_rama/.byebug_history
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
-/config/database.yml
+/movie_rama/config/master.key
+/movie_rama/config/database.yml
 
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
+/movie_rama/public/packs
+/movie_rama/public/packs-test
+/movie_rama/node_modules
+/movie_rama/yarn-error.log
+/movie_ramayarn-debug.log*
+/movie_rama.yarn-integrity

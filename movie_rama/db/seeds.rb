@@ -41,7 +41,7 @@
   },
   {
     title: 'The Pick of Destiny',
-    description: 'This is the pick of destiny. About another kid whoh followe his dream, but a totally different concept',
+    description: 'This is the pick of destiny. About another kid who followe his dream, but a totally different concept',
     user: User.last
   }
 ].each { |movie_attrs| Movie.create movie_attrs }

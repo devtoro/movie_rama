@@ -19,6 +19,7 @@ end
 #
 # Indexes
 #
+#  index_movies_on_title    (title)
 #  index_movies_on_user_id  (user_id)
 #
 # Foreign Keys
