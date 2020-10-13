@@ -16,3 +16,49 @@
  *= require_self
  */
  body { font-family: 'Nunito', sans-serif; }
+
+ form {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 25%;
+
+  section {
+    width: 50%;
+
+    label {
+      display: inline-block;
+      width: 100%;
+    }
+
+    input,
+    textarea { width: 100%; padding: 0; }
+
+    span.error {
+      color: red;
+      font-size: .8rem
+    }
+
+    .field_with_errors {
+      label,
+      input,
+      textarea { color: red; }
+
+      input,
+      textarea { border: 1px solid red; }
+    }
+  }
+
+  button[type='submit'] {
+    width: 50%;
+    display: inline-block;
+    color: #fff;
+    border: 1px solid #5cad5c;
+    background-color: #5cad5c;
+    border-radius: 5px;
+    padding: .35rem 0;
+    margin: 0 auto;
+  }
+
+  section, input { margin: .65rem auto; }
+}
+
