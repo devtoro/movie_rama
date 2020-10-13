@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :movie do
-    title { ['Ironman', 'Captain America', 'Spiderman', 'Venom'].sample }
+    title { Faker::Book.unique.title }
     description { Faker::Lorem.paragraph(sentence_count: 10) }
     association :user, factory: :user
   end
