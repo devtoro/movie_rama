@@ -14,6 +14,7 @@ RSpec.describe 'Acceptance test for user update', type: :feature do
     click_button 'Login'
 
     visit "/users/#{User.last.id}/edit"
+    page.find(:css, '#user-form')
     click_button 'Save'
 
     expect(page).to have_content 'You are not authorized to perform this action'
