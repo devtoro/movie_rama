@@ -28,7 +28,7 @@ docker-compose up
 docker-compose exec web bundle exec rake db:setup
 ```
 Then depending on your system configuration,
-either visit the IP of the movierama_web on port 3000
+either visit the IP of the manosagent/movierama:1.1 container on port 3000
 or localhost on port 3000.
 
 If you are using the dockerapp, just visit localhost:3000
