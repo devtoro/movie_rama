@@ -43,7 +43,7 @@ bundle exec rake db:setup
 bundle exec rails s
 ```
 
-** You need to have ruby 2.6.3 along with the bundler gem
+** You need to have ruby 2.6.3 installed along with the bundler gem
 
 * You can login as an existing user (email: luke@jedi.com, password: movierama) or sign up to create a new account
 
