@@ -40,9 +40,10 @@ bundle install
 
 ```bash
 bundle exec rake db:setup
-bundle exec rake db:migrate
-bundle exec rails c
+bundle exec rails s
 ```
+
+** You need to have ruby 2.6.3 along with the bundler gem
 
 * You can login as an existing user (email: luke@jedi.com, password: movierama) or sign up to create a new account
 
