@@ -22,7 +22,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /movie_rama/config/master.key
-/movie_rama/config/database.yml
 
 /movie_rama/public/packs
 /movie_rama/public/packs-test

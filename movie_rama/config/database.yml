@@ -1,0 +1,17 @@
+default: &default
+  adapter: <%= ENV['DB_ADAPTER'] || 'postgresql' %>
+  encoding: unicode
+  database: <%= ENV['DATABASE_NAME'] || 'movierama_dev' %>
+  username: <%= ENV['DATABASE_USER'] || 'postgres' %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DB_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: movierama_test
