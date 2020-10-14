@@ -11,7 +11,7 @@
 - A user cannot update a movie that has been created by another user
 - A user can sort a movie based on the creation date and on the reactions that each movie has
 - A user can filter out movies per user
-- A user can edit their profile
+- A user can edit his/her profile
 
 ** Ruby version: 2.6.3
 
