@@ -50,8 +50,20 @@ bundle exec rails s
 
 
 ## How to run the test suite
+- With docker
 ```bash
 docker-compose exec -e RAILS_ENV=test -e HUB_URL=http://chrome:4444/wd/hub web bundle exec rspec
+```
+- Withour docker
+after you have run
+```bash
+bundle install
+bundle exec rake db:create
+```
+
+run the command:
+```bash
+bundle exec rspec
 ```
 
 
