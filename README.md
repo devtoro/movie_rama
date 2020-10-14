@@ -21,13 +21,9 @@
 
 ## How to run the application
 ```bash
-docker-compose build
-
 docker-compose up
 
 docker-compose exec web bundle exec rake db:setup
-
-docker-compose exec web bundle exec rake db:seed
 ```
 Then depending on your system configuration,
 either visit the IP of the movierama_web on port 3000
@@ -42,6 +38,7 @@ If you are using the dockerapp, just visit localhost:3000
 bundle install
 ```
 
+```bash
 bundle exec rake db:setup
 bundle exec rake db:migrate
 bundle exec rails c
