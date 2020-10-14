@@ -19,7 +19,7 @@
   - Docker
   - docker-compose (version 3.8)
 
-## How to run the application
+## How to run the application with docker
 ```bash
 docker-compose up
 
