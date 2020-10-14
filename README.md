@@ -3,7 +3,7 @@
 # This is a Dockerized Rails application, named MovieRama.
 * It is set up to run only in development and test env, NOT FOR production
 
-- It lists and list of movies.
+- It lists a list of movies.
 - The user is able to react to the movies by "liking" and "hating" a movie.
 - Only a logged in user can react to a movie
 - A user can sign up and create an account in order to create movies and react to them
