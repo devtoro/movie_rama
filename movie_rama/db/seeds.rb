@@ -18,6 +18,11 @@
     full_name: 'Frodo Baggins',
     email: 'frodo@lotr.com',
     password: 'movierama'
+  },
+  {
+    full_name: 'Tony Montana',
+    email: 'tony@deal.com',
+    password: 'movierama'
   }
 ].each { |user_attrs| User.create user_attrs }
 
@@ -52,3 +57,17 @@
   { name: 'like', color: '#5e5efc' },
   { name: 'hate', color: '#f74040' }
 ].each { |reaction_attrs| Reaction.create reaction_attrs }
+
+user_ids      = User.all.pluck(:id)
+reaction_ids  = Reaction.all.pluck(:id)
+Movie.all.each do |movie|
+  user_ids.each do |uid|
+    next if movie.user_id == uid
+
+    MovieReaction.create(
+      user_id: uid,
+      movie_id: movie.id,
+      reaction_id: reaction_ids.sample
+    )
+  end
+end
