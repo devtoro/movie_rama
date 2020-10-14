@@ -1,7 +1,7 @@
 # README
 
 # This is a Dockerized Rails application, named MovieRama.
-* It is set up to run only in development and test env, NOT FOR production
+** It is set up to run only in development and test env, NOT FOR production
 
 - It lists a list of movies.
 - The user is able to react to the movies by "liking" and "hating" a movie.
@@ -13,8 +13,8 @@
 - A user can filter out movies per user
 - A user can edit their profile
 
-* Build with Ruby on Rails, version: ~> 6.0.3
-* Ruby version: 2.6.3
+** Build with Ruby on Rails, version: ~> 6.0.3
+** Ruby version: 2.6.3
 
 ## System dependencies
   - Docker
