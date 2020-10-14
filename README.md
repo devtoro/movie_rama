@@ -41,26 +41,6 @@ If you are using the dockerapp, just visit localhost:3000
 ```bash
 bundle install
 ```
-- inside the config directory of the application, create a database.yml like the following:
-```yaml
-default: &default
-  adapter: <%= ENV['DB_ADAPTER'] %>
-  encoding: unicode
-  database: <%= ENV['DATABASE_NAME'] || 'movierama_dev' %>
-  username: <%= ENV['DATABASE_USER'] || 'postgres' %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  port: <%= DB_PORT %>
-  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-
-development:
-  <<: *default
-
-test:
-  <<: *default
-  database: movierama_test
-```
 
 bundle exec rake db:setup
 bundle exec rake db:migrate
