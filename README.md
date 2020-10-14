@@ -10,7 +10,7 @@
 - A user cannot react to a movie that he has created
 - A user cannot update a movie that has been created by another user
 - A user can sort a movie based on the creation date and on the reactions that each movie has
-- A user can filter out movies for a user
+- A user can filter out movies per user
 - A user can edit their profile
 
 * Build with Ruby on Rails, version: ~> 6.0.3
