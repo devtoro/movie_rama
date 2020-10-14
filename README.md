@@ -31,7 +31,7 @@ or localhost on port 3000.
 
 If you are using the dockerapp, just visit localhost:3000
 
-# Without docker
+## Without docker
 - CD to the movie_rama directory
 - run:
 ```bash
