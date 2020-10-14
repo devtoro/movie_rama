@@ -4,7 +4,7 @@ class Reaction < ApplicationRecord
   has_many :movie_reactions, dependent: :restrict_with_error
 
   # Validations
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :color, presence: true
 
   # Callbacks
