@@ -17,7 +17,11 @@ class Movie < ApplicationRecord
     when 'date', 'publication'
       order(created_at: direction)
     else
-      join_statement = 'LEFT OUTER JOIN movie_reactions ON movie_reactions.movie_id = movies.id AND movie_reactions.reaction_id = ?'
+      join_statement = <<SQL
+      LEFT OUTER JOIN movie_reactions
+      ON movie_reactions.movie_id = movies.id
+      AND movie_reactions.reaction_id = ?
+SQL
       reaction_id = Reaction.reactions_mapping[order.to_sym]
 
       joins(sanitize_sql_array([join_statement,reaction_id]))
