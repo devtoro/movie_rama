@@ -12,8 +12,6 @@ services:
 
   web:
     build: .
-    volumes:
-      - ./movie_rama:/home/movierama/application:cached
 
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -e development -p 3000 -b '0.0.0.0'"
 
@@ -23,14 +21,22 @@ services:
 
     depends_on:
       - database
+      - chrome
 
     environment:
+      HUB_URL: http://chrome:4444/wd/hub
+      NODE_ENV: development
       RAILS_ENV: development
+      DB_ADAPTER: postgresql
+      DB_PORT: 5432
       DATABASE_NAME: movierama_dev
       DATABASE_USER: movierama
       DATABASE_PASSWORD: 
       DATABASE_HOST: database
-
+  chrome:
+    image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem (see Gemfile)
+    volumes:
+      - /dev/shm:/dev/shm
 # Declare the volumes that our application uses.
 volumes:
   db_data:
