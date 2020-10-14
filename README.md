@@ -44,7 +44,7 @@ bundle exec rake db:migrate
 bundle exec rails c
 ```
 
-* You can login as an existing user (email: luke@jedi.com, password: movierama) or sign up to create anew account
+* You can login as an existing user (email: luke@jedi.com, password: movierama) or sign up to create a new account
 
 
 ## How to run the test suite
