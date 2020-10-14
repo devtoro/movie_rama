@@ -1,4 +1,3 @@
-# TODO: Check fresh build, test and all before delivering
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
