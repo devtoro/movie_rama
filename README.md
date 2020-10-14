@@ -13,9 +13,9 @@
 - A user can filter out movies per user
 - A user can edit their profile
 
-** Build with Ruby on Rails, version: ~> 6.0.3
-
 ** Ruby version: 2.6.3
+
+** Built with Ruby on Rails, version: ~> 6.0.3
 
 ## System dependencies
   - Docker
