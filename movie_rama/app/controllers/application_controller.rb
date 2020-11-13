@@ -4,11 +4,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from UnauthorizedException, with: :user_unauthorized
 
-
   private
 
   def user_unauthorized
-    flash[:error] = 'You are not authorized to perform this action.'
+    flash[:error] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)
   end
 

@@ -2,12 +2,23 @@ require: rubocop-rails
 
 AllCops:
   TargetRubyVersion: 2.7.2
-  NewCops: disable
+Layout/BlockAlignment:
+  Enabled: false
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
 Rails:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
   Enabled: true
 Style/StringLiterals:
   Enabled: false
 Style/StringLiteralsInInterpolation:
-  Enabled: false
-Layout/BlockAlignment:
   Enabled: false

@@ -10,56 +10,56 @@
 #
 [
   {
-    full_name: 'Luke Skywalker',
-    email: 'luke@jedi.com',
-    password: 'movierama'
+    full_name: "Luke Skywalker",
+    email: "luke@jedi.com",
+    password: "movierama",
   },
   {
-    full_name: 'Frodo Baggins',
-    email: 'frodo@lotr.com',
-    password: 'movierama'
+    full_name: "Frodo Baggins",
+    email: "frodo@lotr.com",
+    password: "movierama",
   },
   {
-    full_name: 'Tony Montana',
-    email: 'tony@deal.com',
-    password: 'movierama'
-  }
+    full_name: "Tony Montana",
+    email: "tony@deal.com",
+    password: "movierama",
+  },
 ].each { |user_attrs| User.create user_attrs }
 
 # Create movies
 #
 [
   {
-    title: 'Ironman',
-    description: 'This is ironamn. It is a gem from MARVEL',
-    user: User.first
+    title: "Ironman",
+    description: "This is ironamn. It is a gem from MARVEL",
+    user: User.first,
   },
   {
-    title: 'Gladiator',
-    description: 'This is Gladiator. An epic adventure of a man in roman times',
-    user: User.first
+    title: "Gladiator",
+    description: "This is Gladiator. An epic adventure of a man in roman times",
+    user: User.first,
   },
   {
-    title: 'The Rockstar',
-    description: 'This is the rockstar. About a kid who followed his dream',
-    user: User.last
+    title: "The Rockstar",
+    description: "This is the rockstar. About a kid who followed his dream",
+    user: User.last,
   },
   {
-    title: 'The Pick of Destiny',
-    description: 'This is the pick of destiny. About another kid who followe his dream, but a totally different concept',
-    user: User.last
-  }
+    title: "The Pick of Destiny",
+    description: "This is the pick of destiny. About another kid who followe his dream, but a totally different concept",
+    user: User.last,
+  },
 ].each { |movie_attrs| Movie.create movie_attrs }
 
 # Create reactions
 #
 [
-  { name: 'like', color: '#5e5efc' },
-  { name: 'hate', color: '#f74040' }
+  { name: "like", color: "#5e5efc" },
+  { name: "hate", color: "#f74040" },
 ].each { |reaction_attrs| Reaction.create reaction_attrs }
 
-user_ids      = User.all.pluck(:id)
-reaction_ids  = Reaction.all.pluck(:id)
+user_ids = User.all.pluck(:id)
+reaction_ids = Reaction.all.pluck(:id)
 Movie.all.each do |movie|
   user_ids.each do |uid|
     next if movie.user_id == uid
@@ -67,7 +67,7 @@ Movie.all.each do |movie|
     MovieReaction.create(
       user_id: uid,
       movie_id: movie.id,
-      reaction_id: reaction_ids.sample
+      reaction_id: reaction_ids.sample,
     )
   end
 end

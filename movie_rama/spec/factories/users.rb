@@ -1,9 +1,8 @@
-
 FactoryBot.define do
   factory :user do
-    full_name { Faker::Name.first_name + ' ' + Faker::Name.last_name}
+    full_name { Faker::Name.first_name + " " + Faker::Name.last_name }
     email { Faker::Internet.unique.email }
-    password { 'movierama' }
+    password { "movierama" }
 
     trait :without_name do
       full_name { nil }
@@ -14,7 +13,7 @@ FactoryBot.define do
     end
 
     trait :with_falsy_email do
-      email { 'movierama@mail' }
+      email { "movierama@mail" }
     end
 
     trait :without_password do
@@ -22,7 +21,7 @@ FactoryBot.define do
     end
 
     trait :with_short_password do
-      password { 'movie' }
+      password { "movie" }
     end
 
     trait :with_movies do

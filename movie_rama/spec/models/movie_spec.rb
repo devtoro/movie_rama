@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Movie, type: :model do
-  context 'Validations' do
+  context "Validations" do
     it { should validate_presence_of(:title) }
     it { should validate_uniqueness_of(:title).case_insensitive }
     it { should validate_presence_of(:description) }
@@ -10,7 +10,7 @@ RSpec.describe Movie, type: :model do
     it { should have_db_column(:user_id) }
   end
 
-  context 'Scopes' do
+  context "Scopes" do
     before do
       FactoryBot.create(:user)
       like = FactoryBot.create(:reaction, :like)
@@ -29,20 +29,20 @@ RSpec.describe Movie, type: :model do
           MovieReaction.create(
             user: user,
             movie: movie,
-            reaction: reaction
+            reaction: reaction,
           )
         end
       end
     end
     let(:results) { true }
 
-    it 'Should order movies according to likes desc' do
+    it "Should order movies according to likes desc" do
       movies = Movie.ordered(:like)
       movies.each_with_index do |movie, index|
         next if index == (movies.length - 1)
 
-        movie_likes       = movie.reactions_count[:like]
-        next_movie_likes  = movies[index + 1].reactions_count[:like]
+        movie_likes = movie.reactions_count[:like]
+        next_movie_likes = movies[index + 1].reactions_count[:like]
 
         results = movie_likes >= next_movie_likes
       end
@@ -50,13 +50,13 @@ RSpec.describe Movie, type: :model do
       expect(results).to eq(true)
     end
 
-    it 'Should order movies according to likes asc' do
+    it "Should order movies according to likes asc" do
       movies = Movie.ordered(:like, :asc)
       movies.each_with_index do |movie, index|
         next if index == (movies.length - 1)
 
-        movie_likes       = movie.reactions_count[:like]
-        next_movie_likes  = movies[index + 1].reactions_count[:like]
+        movie_likes = movie.reactions_count[:like]
+        next_movie_likes = movies[index + 1].reactions_count[:like]
 
         results = movie_likes <= next_movie_likes
       end
@@ -64,13 +64,13 @@ RSpec.describe Movie, type: :model do
       expect(results).to eq(true)
     end
 
-    it 'Should order movies according to hates desc' do
+    it "Should order movies according to hates desc" do
       movies = Movie.ordered(:hate)
       movies.each_with_index do |movie, index|
         next if index == (movies.length - 1)
 
-        movie_hates       = movie.reactions_count[:hate]
-        next_movie_hates  = movies[index + 1].reactions_count[:hate]
+        movie_hates = movie.reactions_count[:hate]
+        next_movie_hates = movies[index + 1].reactions_count[:hate]
 
         results = movie_hates >= next_movie_hates
       end
@@ -78,13 +78,13 @@ RSpec.describe Movie, type: :model do
       expect(results).to eq(true)
     end
 
-    it 'Should order movies according to hates asc' do
+    it "Should order movies according to hates asc" do
       movies = Movie.ordered(:hate)
       movies.each_with_index do |movie, index|
         next if index == (movies.length - 1)
 
-        movie_hates       = movie.reactions_count[:hate]
-        next_movie_hates  = movies[index + 1].reactions_count[:hate]
+        movie_hates = movie.reactions_count[:hate]
+        next_movie_hates = movies[index + 1].reactions_count[:hate]
 
         results = movie_hates <= next_movie_hates
       end
@@ -92,7 +92,7 @@ RSpec.describe Movie, type: :model do
       expect(results).to eq(true)
     end
 
-    it 'should only fetch movies of selected user' do
+    it "should only fetch movies of selected user" do
       user = User.first
       movies = Movie.user(user.id)
       movies_user_id = movies.map(&:user_id).uniq

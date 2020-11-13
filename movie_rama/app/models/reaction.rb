@@ -13,7 +13,7 @@ class Reaction < ApplicationRecord
   # Class methods
   class << self
     def reactions_mapping
-      Rails.cache.fetch('reactions_mapping') do
+      Rails.cache.fetch("reactions_mapping") do
         mapping = {}
         all.each { |r| mapping[r.name.to_sym] = r.id }
 
@@ -30,8 +30,8 @@ class Reaction < ApplicationRecord
   # asynchronous job that would clear the required cache keys.
   def clear_cache_movies_counts
     Rails.cache.delete_matched(/\d*_reaction_counts/)
-    Rails.cache.delete('all_reactions')
-    Rails.cache.delete('reactions_mapping')
+    Rails.cache.delete("all_reactions")
+    Rails.cache.delete("reactions_mapping")
   end
 end
 

@@ -10,7 +10,7 @@ class MovieReactionsController < SecureController
       end
     else
       flash[:error] = @mr.errors.messages
-      render template: 'movies/index', status: 422
+      render template: "movies/index", status: 422
     end
   end
 
@@ -21,7 +21,7 @@ class MovieReactionsController < SecureController
       end
     else
       flash[:error] = @mr.errors.messages
-      render template: 'movies/index', status: 422
+      render template: "movies/index", status: 422
     end
   end
 
@@ -32,7 +32,7 @@ class MovieReactionsController < SecureController
       end
     else
       flash[:error] = @mr.errors.messages
-      render template: 'movies/index', status: 422
+      render template: "movies/index", status: 422
     end
   end
 

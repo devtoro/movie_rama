@@ -1,22 +1,22 @@
-require 'rails_helper'
-require 'capybara/rspec'
+require "rails_helper"
+require "capybara/rspec"
 
-RSpec.describe 'Acceptance test for user update', type: :feature do
-  it 'Does not allow a user to update another user data', js: true do
+RSpec.describe "Acceptance test for user update", type: :feature do
+  it "Does not allow a user to update another user data", js: true do
     2.times { |i| FactoryBot.create(:user) }
 
-    visit '/login'
-    within('#login-form') do
-      fill_in 'Email', with: User.first.email
-      fill_in 'Password', with: 'movierama'
+    visit "/login"
+    within("#login-form") do
+      fill_in "Email", with: User.first.email
+      fill_in "Password", with: "movierama"
     end
 
-    click_button 'Login'
+    click_button "Login"
 
     visit "/users/#{User.last.id}/edit"
-    page.find(:css, '#user-form')
-    click_button 'Save'
+    page.find(:css, "#user-form")
+    click_button "Save"
 
-    expect(page).to have_content 'You are not authorized to perform this action'
+    expect(page).to have_content "You are not authorized to perform this action"
   end
 end

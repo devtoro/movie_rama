@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to login_path
     else
       respond_to do |format|
-        format.js {}
+        format.js { }
       end
     end
   end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       redirect_to edit_user_path
     else
       respond_to do |format|
-        format.js {}
+        format.js { }
       end
     end
   end

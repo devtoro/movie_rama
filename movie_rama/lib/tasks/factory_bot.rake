@@ -1,6 +1,6 @@
 # Lint for factory bot in order to avoid issues with cache
 namespace :factory_bot do
-  desc 'Verify that all FactoryBot factories are valid'
+  desc "Verify that all FactoryBot factories are valid"
   task lint: :environment do
     if Rails.env.test?
       DatabaseCleaner.cleaning do

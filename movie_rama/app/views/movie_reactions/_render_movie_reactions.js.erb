@@ -1,5 +1,5 @@
-<% reactions = Rails.cache.fetch('all_reactions') { Reaction.all } %>
+<% reactions = Rails.cache.fetch("all_reactions") { Reaction.all } %>
 
 $(".reactions#<%= mr.movie_id %>").html(
-  "<%= j render partial: 'movies/movie_reactions_row', locals: { current_user: mr.user, movie: mr.movie, reactions: reactions } %>"
+  "<%= j render partial: "movies/movie_reactions_row", locals: { current_user: mr.user, movie: mr.movie, reactions: reactions } %>"
 );

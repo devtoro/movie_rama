@@ -2,14 +2,14 @@ class MoviesController < SecureController
   before_action :set_reactions, except: :destroy
 
   def index
-    i_params  = index_params
-    order     = i_params[:order] || 'date'
-    dir       = i_params[:dir] || 'desc'
-    @dir      = dir == 'desc' ? 'asc' : 'desc'
-    @movies   = Movie
-                .includes(:user)
-                .user(i_params[:user_id])
-                .ordered(order, dir)
+    i_params = index_params
+    order = i_params[:order] || "date"
+    dir = i_params[:dir] || "desc"
+    @dir = dir == "desc" ? "asc" : "desc"
+    @movies = Movie
+      .includes(:user)
+      .user(i_params[:user_id])
+      .ordered(order, dir)
   end
 
   def show; end
@@ -26,7 +26,7 @@ class MoviesController < SecureController
       redirect_to movies_path
     else
       respond_to do |format|
-        format.js {}
+        format.js { }
       end
     end
   end
@@ -39,7 +39,7 @@ class MoviesController < SecureController
       redirect_to movies_path
     else
       respond_to do |format|
-        format.js {}
+        format.js { }
       end
     end
   end
@@ -67,7 +67,7 @@ class MoviesController < SecureController
   end
 
   def set_reactions
-    @reactions = Rails.cache.fetch('all_reactions') { Reaction.all }
+    @reactions = Rails.cache.fetch("all_reactions") { Reaction.all }
   end
 
   def authorize_movie

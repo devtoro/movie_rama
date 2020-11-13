@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
       log_in user
       redirect_back_or root_path
     else
-      flash[:error] = 'Invalid email/password combination'
-      render template: 'sessions/new'
+      flash[:error] = "Invalid email/password combination"
+      render template: "sessions/new"
     end
   end
 

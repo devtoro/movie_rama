@@ -18,7 +18,7 @@ Rails.application.configure do
   config.cache_classes = true
   config.cache_store = :memory_store
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+    "Cache-Control" => "public, max-age=#{1.hour.to_i}",
   }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).

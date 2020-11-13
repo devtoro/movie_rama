@@ -1,12 +1,12 @@
 module MovieReactionsHelper
   def reaction_link_to(reaction:, user:, movie:, umr: nil)
     options = if umr && (umr.reaction_id == reaction.id)
-                delete_options(umr)
-              elsif umr
-                patch_options(umr, reaction.id)
-              else
-                post_options(reaction.id, user.id, movie.id)
-              end
+        delete_options(umr)
+      elsif umr
+        patch_options(umr, reaction.id)
+      else
+        post_options(reaction.id, user.id, movie.id)
+      end
 
     generated_link(reaction, options)
   end
@@ -30,7 +30,7 @@ module MovieReactionsHelper
   def delete_options(umr)
     {
       http_method: :delete,
-      url: movie_reaction_path(umr)
+      url: movie_reaction_path(umr),
     }
   end
 
@@ -39,8 +39,8 @@ module MovieReactionsHelper
       http_method: :patch,
       url: movie_reaction_path(
         umr_id,
-        movie_reaction: { reaction_id: reaction_id }
-      )
+        movie_reaction: { reaction_id: reaction_id },
+      ),
     }
   end
 
@@ -51,9 +51,9 @@ module MovieReactionsHelper
         movie_reaction: {
           reaction_id: reaction_id,
           movie_id: movie_id,
-          user_id: user_id
-        }
-      )
+          user_id: user_id,
+        },
+      ),
     }
   end
 end
