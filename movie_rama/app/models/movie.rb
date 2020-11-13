@@ -24,9 +24,9 @@ class Movie < ApplicationRecord
 SQL
       reaction_id = Reaction.reactions_mapping[order.to_sym]
 
-      joins(sanitize_sql_array([join_statement,reaction_id]))
+      joins(sanitize_sql_array([join_statement, reaction_id]))
         .group('movies.id')
-        .order("COUNT(movie_reactions.reaction_id) #{direction.to_s.upcase}")
+        .order(sanitize_sql_array['COUNT(movie_reactions.reaction_id)', direction.to_s.upcase])
     end
   end
 
