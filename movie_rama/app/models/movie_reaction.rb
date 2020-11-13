@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MovieReaction < ApplicationRecord
   # Relationships
   belongs_to :movie
@@ -7,7 +9,7 @@ class MovieReaction < ApplicationRecord
   # Validations
   validates :movie_id, uniqueness: { scope: :user_id }
   validates :user_id, presence: true, on: :create
-  validate  :user_not_movie_owner
+  validate :user_not_movie_owner
 
   # Scopes
 
@@ -46,7 +48,7 @@ class MovieReaction < ApplicationRecord
     # If movie is blank, the movie presence validation will add an error
     return unless movie && user_id == movie.user_id
 
-    errors.add(:user_id, 'Movie owner cannot react to movie.')
+    errors.add(:user_id, "Movie owner cannot react to movie.")
   end
 
   # We cache movie reactions in order to avoid n+1 queries. For that reason

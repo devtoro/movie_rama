@@ -4,7 +4,7 @@ class Movie < ApplicationRecord
   has_many :movie_reactions, dependent: :destroy
 
   # Validations
-  validates_presence_of :description, :user_id
+  validates :description, :user_id, presence: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   # If user is deleted, the movie should remain with user_id, but user will be blank
   # We might still want to be able to update the movie
@@ -12,23 +12,23 @@ class Movie < ApplicationRecord
 
   # Scopes
   scope :user, ->(user_id = nil) { user_id ? where(user_id: user_id) : self }
-  scope :ordered, ->(order = 'date', direction = 'desc') do
-    case order
-    when 'date', 'publication'
-      order(created_at: direction)
-    else
-      join_statement = <<SQL
-      LEFT OUTER JOIN movie_reactions
-      ON movie_reactions.movie_id = movies.id
-      AND movie_reactions.reaction_id = ?
+  scope :ordered, ->(order = "date", direction = "desc") do
+          case order
+          when "date", "publication"
+            order(created_at: direction)
+          else
+            join_statement = <<SQL
+        LEFT OUTER JOIN movie_reactions
+        ON movie_reactions.movie_id = movies.id
+        AND movie_reactions.reaction_id = ?
 SQL
-      reaction_id = Reaction.reactions_mapping[order.to_sym]
+            reaction_id = Reaction.reactions_mapping[order.to_sym]
 
-      joins(sanitize_sql_array([join_statement, reaction_id]))
-        .group('movies.id')
-        .order(sanitize_sql_array['COUNT(movie_reactions.reaction_id)', direction.to_s.upcase])
-    end
-  end
+            joins(sanitize_sql_array([join_statement, reaction_id]))
+              .group("movies.id")
+              .order(sanitize_sql_array["COUNT(movie_reactions.reaction_id)", direction.to_s.upcase])
+          end
+        end
 
   # Instance Methods
   def user_name

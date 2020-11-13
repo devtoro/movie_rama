@@ -1,0 +1,13 @@
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7.2
+  NewCops: disable
+Rails:
+  Enabled: true
+Style/StringLiterals:
+  Enabled: false
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+Layout/BlockAlignment:
+  Enabled: false
